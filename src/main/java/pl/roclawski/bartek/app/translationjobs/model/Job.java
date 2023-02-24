@@ -39,7 +39,7 @@ public class Job {
         } else {
             this.status = JobStatus.QUOTING;
         }
-        LOGGER.info("receive(...)=" + status);
+        LOGGER.info("receive(...) = " + status);
         return status;
     }
 
@@ -47,7 +47,7 @@ public class Job {
         LOGGER.info("changeStatus(" + jobStatus + ")");
         this.status = jobStatus;
 
-        LOGGER.info("changeStatus(...)=" + status);
+        LOGGER.info("changeStatus(...) = " + status);
         return this.status;
     }
 // TODO: 13.02.2023 Dodać loggery do wszystkich metod publicznych
