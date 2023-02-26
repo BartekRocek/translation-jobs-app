@@ -89,6 +89,11 @@ public class JobIntegrationTest {
         JobStatus jobStatusAfterQuoting = simpleJob.changeStatus(JobStatus.TO_ACCEPT);
 
         // then
+        Assertions.assertAll(
+                () -> Assertions.assertEquals(JobStatus.QUOTING, receive, "The JobStatus should be " + JobStatus.QUOTING),
+                () -> Assertions.assertNotNull(masterContractorQuoteProvided, "The Quote cannot be null"),
+                () -> Assertions.assertEquals(JobStatus.TO_ACCEPT, jobStatusAfterQuoting, "The JobStatus should be " + JobStatus.TO_ACCEPT)
+        );
 
 
     }
