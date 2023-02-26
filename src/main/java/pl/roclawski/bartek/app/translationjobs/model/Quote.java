@@ -7,6 +7,7 @@ public class Quote {
     BigDecimal amount;
     boolean accepted;
 
+
     public BigDecimal provide(BigDecimal amount) {
         this.amount = amount;
         return this.amount;
