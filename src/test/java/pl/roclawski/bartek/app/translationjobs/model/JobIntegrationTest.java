@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 public class JobIntegrationTest {
 
     private static final String businessName = "KFC";
+    public static final BigDecimal AMOUNT_DUE_500 = BigDecimal.valueOf(500);
 
     Customer firstCustomer;// = new Customer("client", "1234");
     Job jobGiven; //= new Job(firstCustomer, businessName);
@@ -93,14 +94,17 @@ public class JobIntegrationTest {
         boolean superRichCustomerQuoteAccepted = superRichCustomerQuote.accept();
         // Administrator/Contractor
         JobStatus jobStatusAfterQuoting = simpleJob.changeStatus(JobStatus.TO_ACCEPT);
+        //Contractor
+        BigDecimal simpleJobAmountDue = simpleJob.finish(AMOUNT_DUE_500);
+        JobStatus jobStatusAfterAmountDue = simpleJob.getStatus();
 
         // then
         Assertions.assertAll(
                 () -> Assertions.assertEquals(JobStatus.QUOTING, receive, "The JobStatus should be " + JobStatus.QUOTING),
                 () -> Assertions.assertNotNull(masterContractorQuoteProvided, "The Quote cannot be null"),
-                () -> Assertions.assertEquals(JobStatus.TO_ACCEPT, jobStatusAfterQuoting, "The JobStatus should be " + JobStatus.TO_ACCEPT)
+                () -> Assertions.assertEquals(JobStatus.TO_ACCEPT, jobStatusAfterQuoting, "The JobStatus should be " + JobStatus.TO_ACCEPT),
+                () -> Assertions.assertEquals(AMOUNT_DUE_500, simpleJobAmountDue, "Not equals " + AMOUNT_DUE_500),
+                () -> Assertions.assertEquals(JobStatus.FINISHED, jobStatusAfterAmountDue, "The JobStatus should be " + JobStatus.FINISHED)
         );
-
-
     }
 }
