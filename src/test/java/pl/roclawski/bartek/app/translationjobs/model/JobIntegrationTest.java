@@ -83,9 +83,15 @@ public class JobIntegrationTest {
         Quote superRichCustomerQuote = new Quote();
 
         // when
+        // Administrator/Contractor
         simpleJob.assign(masterContractor);
+        // Customer
         JobStatus receive = simpleJob.receive(superRichCustomerQuote);
+        // Administrator/Contractor
         BigDecimal masterContractorQuoteProvided = superRichCustomerQuote.provide(BigDecimal.TEN);
+        // Customer
+        boolean superRichCustomerQuoteAccepted = superRichCustomerQuote.accept();
+        // Administrator/Contractor
         JobStatus jobStatusAfterQuoting = simpleJob.changeStatus(JobStatus.TO_ACCEPT);
 
         // then

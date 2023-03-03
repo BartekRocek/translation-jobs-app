@@ -1,5 +1,6 @@
 package pl.roclawski.bartek.app.translationjobs.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.logging.Logger;
 
@@ -9,6 +10,7 @@ public class Job {
 
     Customer customer;
     Quote quote;
+    BigDecimal amountDue;
     Contractor contractor;
 
     String name;
@@ -50,10 +52,20 @@ public class Job {
         LOGGER.info("changeStatus(...) = " + status);
         return this.status;
     }
-// TODO: 13.02.2023 Dodać loggery do wszystkich metod publicznych
-//  Dla modelu Job stworzyć 3 warstwy Controller, Service, Repository i w każdej warstwie metody CRUD wydmuszki (JobController, JobService itd) DID od controllera w dół
-//  Przełączyć się na IntelliJ Community Edition
+
+    public BigDecimal finish(BigDecimal amountDue) {
+        LOGGER.info("finish(" + amountDue + ")");
+        this.amountDue = amountDue;
+        changeStatus(JobStatus.FINISHED);
+        LOGGER.info("finish(...) = " + this.amountDue);
+        return this.amountDue;
+    }
+
     public JobStatus getStatus() {
         return status;
+    }
+
+    public BigDecimal getAmountDue() {
+        return amountDue;
     }
 }
