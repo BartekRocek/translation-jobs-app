@@ -3,7 +3,11 @@ package pl.roclawski.bartek.app.translationjobs.model;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 class JobTest {
+
+    public static final BigDecimal AMOUNT_DUE_500 = BigDecimal.valueOf(500);
 
     @Test
     void give_when_then() {
@@ -94,6 +98,21 @@ class JobTest {
         // then
         Assertions.assertEquals(JobStatus.SETTLED, jobStatusChanged, "Wrong! The JobStatus.SETTLED is" + jobStatusChanged);
         System.out.println(jobStatusChanged.getMessage());
+    }
+
+    @Test
+    void finish() {
+        // given
+        Job job = new Job(null, null);
+
+        // when
+        BigDecimal amountDue = job.finish(AMOUNT_DUE_500);
+
+        // then
+        Assertions.assertAll(
+                () -> Assertions.assertEquals(AMOUNT_DUE_500, amountDue, "Not equals " + AMOUNT_DUE_500),
+                () -> Assertions.assertEquals(JobStatus.FINISHED, job.getStatus(), "Status is NOT " + JobStatus.FINISHED)
+        );
     }
 
 
