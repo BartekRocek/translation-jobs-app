@@ -1,20 +1,34 @@
-package pl.roclawski.bartek.app.translationjobs.model;
+package pl.roclawski.bartek.app.translationjobs.repository;
 
-public class Account {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-    String login;
-    String password;
+@Entity
+@Table(name = "ACCOUNTS")
+public class AccountEntity {
 
-    String name;
-    String firstName;
-    String lastName;
+    @Id
+    @GeneratedValue
+    private Long Id;
 
-    public Account() {
+    private String login;
+    private String password;
+
+    private String name;
+    private String firstName;
+    private String lastName;
+
+    public AccountEntity() {
     }
 
-    public Account(String login, String password) {
-        this.login = login;
-        this.password = password;
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
     }
 
     public String getLogin() {
@@ -59,8 +73,9 @@ public class Account {
 
     @Override
     public String toString() {
-        return "Account{" +
-                "login='" + login + '\'' +
+        return "AccountEntity{" +
+                "Id=" + Id +
+                ", login='" + login + '\'' +
                 ", name='" + name + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
