@@ -1,12 +1,13 @@
 package pl.roclawski.bartek.app.translationjobs.repository.mapper;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import pl.roclawski.bartek.app.translationjobs.model.Account;
 import pl.roclawski.bartek.app.translationjobs.repository.AccountEntity;
 
 import java.util.logging.Logger;
 
-@Controller
+@Component
 public class AccountMapper {
 
     public static final Logger LOGGER = Logger.getLogger(AccountMapper.class.getName());

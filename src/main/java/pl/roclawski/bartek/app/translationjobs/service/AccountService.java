@@ -1,10 +1,13 @@
 package pl.roclawski.bartek.app.translationjobs.service;
 
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import pl.roclawski.bartek.app.translationjobs.model.Account;
 import pl.roclawski.bartek.app.translationjobs.repository.AccountEntity;
 import pl.roclawski.bartek.app.translationjobs.repository.AccountRepository;
 import pl.roclawski.bartek.app.translationjobs.repository.mapper.AccountMapper;
 
+@Service
 public class AccountService {
 
     private final AccountRepository accountRepository;
