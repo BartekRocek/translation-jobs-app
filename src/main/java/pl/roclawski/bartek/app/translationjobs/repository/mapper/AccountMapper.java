@@ -1,7 +1,6 @@
 package pl.roclawski.bartek.app.translationjobs.repository.mapper;
 
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import pl.roclawski.bartek.app.translationjobs.model.Account;
 import pl.roclawski.bartek.app.translationjobs.repository.AccountEntity;
 
@@ -15,7 +14,7 @@ public class AccountMapper {
     public AccountEntity from(Account account) {
         LOGGER.info("from(" + account + ")");
 
-        String login = account.getLogin(); // FIXME: 09.03.2023 is it legal
+        String login = account.getLogin(); //
         String password = account.getPassword(); // FIXME: 09.03.2023 is it legal
 
         String name = account.getName();
@@ -24,11 +23,11 @@ public class AccountMapper {
 
         AccountEntity accountEntity = new AccountEntity();
 
-        accountEntity.setLogin("abuser");
-        accountEntity.setPassword("qwerty");
-        accountEntity.setName("corpo");
-        accountEntity.setFirstName("Ann");
-        accountEntity.setLastName("Apple");
+        accountEntity.setLogin(login);
+        accountEntity.setPassword(password);
+        accountEntity.setName(name);
+        accountEntity.setFirstName(firstName);
+        accountEntity.setLastName(lastName);
 
         LOGGER.info("from(...) = " + accountEntity);
         return accountEntity;
@@ -43,9 +42,9 @@ public class AccountMapper {
         String lastName = accountEntity.getLastName();
 
         Account account = new Account(accountEntity.getLogin(), accountEntity.getPassword());
-        account.setName("corpo");
-        account.setFirstName("Ann");
-        account.setLastName("Apple");
+        account.setName(name);
+        account.setFirstName(firstName);
+        account.setLastName(lastName);
 
         LOGGER.info("from(...) = " + account);
         return account;
