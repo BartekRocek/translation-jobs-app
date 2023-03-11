@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.roclawski.bartek.app.translationjobs.model.Account;
+import pl.roclawski.bartek.app.translationjobs.service.AccountService;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -13,8 +14,16 @@ import java.util.logging.Logger;
 public class AccountController {
     public static final Logger LOGGER = Logger.getLogger(AccountController.class.getName());
 
+    private final AccountService accountService;
+
+    public AccountController(AccountService accountService) {
+        this.accountService = accountService;
+    }
+
     // C - create
     public Account create(Account account) {
+
+        accountService.account(account);
         return null;
     }
 
