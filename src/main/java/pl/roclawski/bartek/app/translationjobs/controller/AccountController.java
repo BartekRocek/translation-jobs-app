@@ -2,11 +2,11 @@ package pl.roclawski.bartek.app.translationjobs.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.roclawski.bartek.app.translationjobs.model.Account;
 import pl.roclawski.bartek.app.translationjobs.service.AccountService;
 
-import java.util.List;
 import java.util.logging.Logger;
 
 @Controller
@@ -20,11 +20,19 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    // C - create
-    public Account create(Account account) {
+    @GetMapping(value = "/create")
+    public String createView() {
+        LOGGER.info("createView()");
 
-        accountService.account(account);
-        return null;
+        return "accounts/create";
+    }
+
+    @PostMapping
+    public String create(Account account) {
+        LOGGER.info("create(" + account + ")");
+
+        accountService.create(account);
+        return "accounts/create";
     }
 
     // R - read
@@ -46,7 +54,7 @@ public class AccountController {
     public String list() {
         LOGGER.info("list()");
 
-        return "accounts/accounts.html";
+        return "accounts/accounts";
     }
 
 }
